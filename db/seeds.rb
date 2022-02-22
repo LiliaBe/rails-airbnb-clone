@@ -8,22 +8,22 @@
 
 require 'faker'
 
-CATEGORY = ['wind instruments', 'drums', 'guitars', 'keyboards']
+# CATEGORY = ['Strings', 'Keyboard', 'Woodwind', 'Brass', 'Percussions', 'Amplification', 'Microphones', 'Cables & Accessories']
 10.times do
   user = User.create(
-      email: Faker::Internet.email,
-      password: Faker::Internet.password(min_length: 8, mix_case: true, special_characters: true),
-      first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
-      rating: [1, 2, 3, 4, 5].sample,
-      bio: Faker::Lorem.sentence
-    )
+    email: Faker::Internet.email,
+    password: Faker::Internet.password(min_length: 8, mix_case: true, special_characters: true),
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    rating: [1, 2, 3, 4, 5].sample,
+    bio: Faker::Lorem.sentence
+  )
   user.save!
   ## For instruments: ##
   [0, 1, 2].sample.times do
     instru = Instrument.new(
       name: Faker::Music.instrument,
-      category: CATEGORY.sample,
+      category: Instrument::CATEGORY.sample,
       location: Faker::Address.city,
       rating: [1, 2, 3, 4, 5].sample,
       description: Faker::Lorem.sentence,
