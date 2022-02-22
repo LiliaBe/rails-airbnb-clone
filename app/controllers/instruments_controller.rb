@@ -1,9 +1,9 @@
 class InstrumentsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
-  skip_after_action :verify_policy_scoped, only: :index
 
   def index
-    @instruments = Instrument.where(:category => params[:filter_by])
+    # @instruments = Instrument.where(category: params[:filter_by])
+    @instruments = policy_scope(Instrument)
   end
 
   def new
@@ -12,11 +12,11 @@ class InstrumentsController < ApplicationController
   end
 
   def create
-    @instrument = Instrument.new(params)
+    @instrument = Instrument.new(instrument_params)
     @instrument.user = current_user
     authorize @instrument
     if @instrument.save
-      redirect_to new_instrument_path
+      redirect_to instruments_path
     else
       render :new
     end
@@ -30,18 +30,18 @@ class InstrumentsController < ApplicationController
   def update
     @instrument = Instrument.find(params[:id])
     @instrument.update(instrument_params)
+    authorize @instrument
 
     # no need for app/views/instruments/update.html.erb
     redirect_to instrument_path(@instrument)
-    authorize @instrument
   end
 
   def destroy
     @instrument = Instrument.find(params[:id])
     @instrument.destroy
+    authorize @instrument
 
     redirect_to instrument_path
-    authorize @instrument
   end
 
   private

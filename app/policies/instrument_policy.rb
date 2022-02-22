@@ -1,12 +1,8 @@
 class InstrumentPolicy < ApplicationPolicy
 
-  # def create?
-  #   return true
-  # end
-
-  # def new?
-  #   create?
-  # end
+  def create?
+    true
+  end
 
   def update?
     record.user == user
