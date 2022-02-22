@@ -3,7 +3,11 @@ class InstrumentsController < ApplicationController
   skip_after_action :verify_policy_scoped, only: :index
 
   def index
-    @instruments = Instrument.where(:category => params[:filter_by])
+    if params[:category]
+      @instruments = Instrument.where(category: params[:category])
+    else
+      @instruments = Instrument.all
+    end
   end
 
   def new
