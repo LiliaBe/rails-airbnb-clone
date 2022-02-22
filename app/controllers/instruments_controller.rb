@@ -1,5 +1,4 @@
 class InstrumentsController < ApplicationController
-  has_one_attached :photo
 
   def index
     @instrument = Instrument.all
