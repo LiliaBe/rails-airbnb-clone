@@ -1,4 +1,9 @@
 class InstrumentsController < ApplicationController
+
+  def index
+    @instrument = Instrument.all
+  end
+
   def new
     @instrument = Instrument.new
   end
@@ -10,5 +15,11 @@ class InstrumentsController < ApplicationController
     else
       render :new
     end
+  end
+
+  private
+
+  def instrument_params
+    params.require(:instrument).permit(:name, :category, :photo, :description, :price, :location)
   end
 end
