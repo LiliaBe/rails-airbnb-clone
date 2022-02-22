@@ -9,7 +9,7 @@
 require 'faker'
 
 CATEGORY = ['wind instruments', 'drums', 'guitars', 'keyboards']
-2.times do
+10.times do
   user = User.create(
       email: Faker::Internet.email,
       password: Faker::Internet.password(min_length: 8, mix_case: true, special_characters: true),
