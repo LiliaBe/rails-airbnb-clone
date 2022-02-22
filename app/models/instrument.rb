@@ -7,5 +7,5 @@ class Instrument < ApplicationRecord
   validates :location, presence: true, uniqueness: true
   validates :description, presence: true, uniqueness: true
   validates :price, presence: true, uniqueness: true, numericality: { only_integer: true }
-  validates :rating, presence: true, uniqueness: true, numericality: { only_integer: true }
+
 end

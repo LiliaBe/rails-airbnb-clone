@@ -8,22 +8,45 @@ class InstrumentsController < ApplicationController
 
   def new
     @instrument = Instrument.new
-    authorize @instruments
+    authorize @instrument
   end
 
   def create
-    # @record = Record.new(params)
+    @instrument = Instrument.new(params)
+    @instrument.user = current_user
+    if @instrument.save
+      redirect_to new_instrument_path
+      authorize @instrument
+    else
+      render :new
+    end
+  end
 
-    # if @record.save
-    #   redirect_to [une nouvelle page]
-    # else
-    #   render :new
-    # end
-
+  def edit
+    @instrument = Instrument.find(params[:id])
+    authorize @instrument
   end
 
   def update
     @instrument = Instrument.find(params[:id])
+    @instrument.update(instrument_params)
+
+    # no need for app/views/instruments/update.html.erb
+    redirect_to instrument_path(@instrument)
     authorize @instrument
+  end
+
+  def destroy
+    @instrument = Instrument.find(params[:id])
+    @instrument.destroy
+
+    redirect_to instrument_path
+    authorize @instrument
+  end
+
+  private
+
+  def instrument_params
+    params.require(:instrument).permit(:name, :category, :location, :description, :rating, :price)
   end
 end
