@@ -67,3 +67,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Cloudinary, to manage user photo uploading
 gem 'cloudinary', '~> 1.16.0'
+gem 'pundit'

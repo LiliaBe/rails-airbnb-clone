@@ -7,7 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
-
 puts "destroying instruments and users"
 Instrument.destroy_all
 User.destroy_all
