@@ -9,25 +9,28 @@
 require 'faker'
 
 CATEGORY = ['wind instruments', 'drums', 'guitars', 'keyboards']
-## For instruments: ##
-40.times do
-  instru = Instrument.new(
-    name: Faker::Music.instrument,
-    category: CATEGORY.sample,
-    location: Faker::Address.city,
-    rating: [1,2,3,4,5].sample,
-    description: Faker::Lorem.sentence,
-    price: rand(330)
-  )
-  p instru.save
-end
-
-40.times do
-  User.create(
-    email: Faker::Internet.email,
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    rating: [1,2,3,4,5].sample,
-    bio: Faker::Lorem.sentence
-  )
+2.times do
+  user = User.create(
+      email: Faker::Internet.email,
+      password: Faker::Internet.password(min_length: 8, mix_case: true, special_characters: true),
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      rating: [1, 2, 3, 4, 5].sample,
+      bio: Faker::Lorem.sentence
+    )
+  user.save!
+  ## For instruments: ##
+  [0, 1, 2].sample.times do
+    instru = Instrument.new(
+      name: Faker::Music.instrument,
+      category: CATEGORY.sample,
+      location: Faker::Address.city,
+      rating: [1, 2, 3, 4, 5].sample,
+      description: Faker::Lorem.sentence,
+      price: rand(50)
+    )
+    instru.user = user
+    instru.save
+    # p instru.errors.messages
+  end
 end
