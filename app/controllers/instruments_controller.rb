@@ -2,8 +2,11 @@ class InstrumentsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    # @instruments = Instrument.where(category: params[:filter_by])
-    @instruments = policy_scope(Instrument)
+    if params[:category]
+    @instruments = policy_scope(Instrument).where(category: params[:category])
+    else
+      @instruments = policy_scope(Instrument)
+    end
   end
 
   def new

@@ -5,12 +5,54 @@
 </div>
 
 <div class="container">
-  <%# <%= link_to instruments_path do %>
-    <div class="flex-container">
-      <div class="icon-box col-6 col-lg-3">
-        <%= image_tag "music_categories/drum-kit.png", style: "width: 100px;" %>
-        <p>percussion</p>
+  <div class="grid-container">
+    <%= link_to instruments_path(category: "Strings") do %>
+      <div class="icon-box">
+        <%= image_tag "music_categories/guitar.png", style: "width: 100px;" %>
+        <p>Strings</p>
       </div>
-  <%# <% end %>
+    <% end %>
+    <%= link_to instruments_path(category: "Keyboard") do %>
+      <div class="icon-box">
+        <%= image_tag "music_categories/piano.png", style: "width: 100px;" %>
+        <p>Keys</p>
+      </div>
+    <% end %>
+    <%= link_to instruments_path(category: "Woodwind") do %>
+      <div class="icon-box">
+        <%= image_tag "music_categories/saxophone.png", style: "width: 100px;" %>
+        <p>Woodwind</p>
+      </div>
+    <% end %>
+    <%= link_to instruments_path(category: "Brass") do %>
+      <div class="icon-box">
+        <%= image_tag "music_categories/trumpet.png", style: "width: 100px;" %>
+        <p>Brass</p>
+      </div>
+    <% end %>
+    <%= link_to instruments_path(category: "percussion") do %>
+      <div class="icon-box">
+        <%= image_tag "music_categories/drum-kit.png", style: "width: 100px;" %>
+        <p>Percussion</p>
+      </div>
+    <% end %>
+    <%= link_to instruments_path(category: "Amplification") do %>
+      <div class="icon-box">
+        <%= image_tag "music_categories/amplifier.png", style: "width: 100px;" %>
+        <p>Amplification</p>
+    </div>
+    <% end %>
+      <%= link_to instruments_path(category: "Microphones") do %>
+      <div class="icon-box">
+        <%= image_tag "music_categories/microphone.png", style: "width: 100px;" %>
+        <p>Microphones</p>
+      </div>
+    <% end %>
+      <%= link_to instruments_path(category: "Cables & Accessories") do %>
+      <div class="icon-box">
+        <%= image_tag "music_categories/jack.png", style: "width: 100px;" %>
+        <p>Cables & Accessories</p>
+      </div>
+    <% end %>
   </div>
 </div>
