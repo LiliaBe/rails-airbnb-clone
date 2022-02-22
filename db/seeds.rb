@@ -8,9 +8,15 @@
 
 require 'faker'
 
+puts "destroying instruments and users"
+Instrument.destroy_all
+User.destroy_all
+
+puts "Creating 10 users + instruments"
+
 # CATEGORY = ['Strings', 'Keyboard', 'Woodwind', 'Brass', 'Percussions', 'Amplification', 'Microphones', 'Cables & Accessories']
 10.times do
-  user = User.create(
+  user = User.new(
     email: Faker::Internet.email,
     password: Faker::Internet.password(min_length: 8, mix_case: true, special_characters: true),
     first_name: Faker::Name.first_name,
@@ -30,7 +36,7 @@ require 'faker'
       price: rand(50)
     )
     instru.user = user
-    instru.save
+    instru.save!
     # p instru.errors.messages
   end
 end
