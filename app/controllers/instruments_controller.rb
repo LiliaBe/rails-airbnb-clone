@@ -1,8 +1,10 @@
 class InstrumentsController < ApplicationController
-
   def index
-    raise
-    @instruments = Instrument.where(:category => params[:filter_by])
+    if params[:category]
+      @instruments = Instrument.where(category: params[:category])
+    else
+      @instruments = Instrument.all
+    end
   end
 
   def new
