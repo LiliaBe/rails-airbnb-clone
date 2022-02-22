@@ -1,15 +1,28 @@
-<div class="container">
-  <% @instruments = Instrument.find_by(category: params[:category]) %>
+<div class="banner mb-40" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80);">
+  <h1><%=params[:category] %></h1>
+</div>
 
-  <% if @instruments.nil? %>
-    <div>
-      <%= "There is no instrument in this category"%>
-    </div>
-  <% else %>
-    <% @instruments.each do |instrument| %>
-      <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in">
-        <%= image_tag instrument.photo.key, alt: instrument.name, class: "rounded-top" %>
+<div class="container " >
+  <div class="grid-container my-5">
+    <% @instruments = Instrument.where(category: params[:category]) %>
+    <% if @instruments.nil? %>
+      <div>
+        <%= "There is no instrument in this category"%>
       </div>
+    <% else %>
+      <% @instruments.each do |instrument| %>
+        <div class="card-trip">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+            <div class="card-trip-infos">
+              <div>
+                <h2><%=instrument.name %></h2>
+                <p><%=instrument.description %></p>
+              </div>
+              <h2 class="card-trip-pricing"><%=instrument.price%>€</h2>
+              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+            </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
