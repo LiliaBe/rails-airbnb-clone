@@ -1,16 +1,15 @@
 <div class="container">
-  <h1><%= @instrument.category %></h1>
-   <% @instruments = Instrument.find_by(category: params) %>
-    <div class="row my-2">
-      <% @instruments.each do |instrument| %>
-        <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in">
-          <div class="bg-white rounded shadow h-100">
-            <%= image_tag instrument.photo.key, alt: instrument.name, class: "rounded-top" %>
-          <div class="p-3 rounded-bottom d-flex flex-column">
-            <strong><%= instrument.name %> <span class="text-muted font-weight-normal">• <%= movie.rating %> <i class="fas fa-star star-yellow"></i></span></strong>
-          </div>
-        </div>
+  <% @instruments = Instrument.find_by(category: params[:category]) %>
+
+  <% if @instruments.nil? %>
+    <div>
+      <%= "There is no instrument in this category"%>
+    </div>
+  <% else %>
+    <% @instruments.each do |instrument| %>
+      <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in">
+        <%= image_tag instrument.photo.key, alt: instrument.name, class: "rounded-top" %>
       </div>
     <% end %>
-  </div>
+  <% end %>
 </div>
