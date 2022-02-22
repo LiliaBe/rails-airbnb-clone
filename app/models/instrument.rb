@@ -4,4 +4,8 @@ class Instrument < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :category, presence: true, uniqueness: true, inclusion: { in: Instrument::CATEGORY }
+  validates :location, presence: true, uniqueness: true
+  validates :description, presence: true, uniqueness: true
+  validates :price, presence: true, uniqueness: true, numericality: { only_integer: true }
+  validates :rating, presence: true, uniqueness: true, numericality: { only_integer: true }
 end
