@@ -13,6 +13,17 @@ class InstrumentsController < ApplicationController
   def show
     @instrument = Instrument.find(params[:id])
     authorize @instrument
+
+    # the `geocoded` scope filters only instruments with coordinates (latitude & longitude)
+    if @instrument.geocoded?
+      @markers =[{
+                  lat: @instrument.latitude,
+                  lng: @instrument.longitude
+                }]
+    else
+      @markers = [{}]
+    end
+
     @booking = Booking.new
     authorize @booking
   end
