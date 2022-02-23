@@ -11,7 +11,7 @@ puts "destroying instruments and users"
 Instrument.destroy_all
 User.destroy_all
 
-puts "Creating 10 users + instruments"
+puts "Creating 3 users + 7 instruments"
 
 # CATEGORY = ['Strings', 'Keyboard', 'Woodwind', 'Brass', 'Percussions', 'Amplification', 'Microphones', 'Cables & Accessories']
 
@@ -107,6 +107,28 @@ instru = Instrument.new(
   rating: 5,
   description: "Good condition",
   price: 55
+)
+instru.user = user2
+instru.save!
+##
+instru = Instrument.new(
+  name: 'Gibsonnn electric guitar',
+  category: 'Strings',
+  location: 'Paris',
+  rating: 5,
+  description: "Good condition",
+  price: 80
+)
+instru.user = user2
+instru.save!
+##
+instru = Instrument.new(
+  name: 'Acoustic guitar',
+  category: 'Strings',
+  location: 'Paris',
+  rating: 5,
+  description: "Good condition",
+  price: 20
 )
 instru.user = user2
 instru.save!
