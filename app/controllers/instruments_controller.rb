@@ -12,6 +12,8 @@ class InstrumentsController < ApplicationController
   def show
     @instrument = Instrument.find(params[:id])
     authorize @instrument
+    @booking = Booking.new
+    authorize @booking
   end
 
   def new
