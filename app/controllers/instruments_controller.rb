@@ -3,15 +3,27 @@ class InstrumentsController < ApplicationController
 
   def index
     if params[:category]
-    @instruments = policy_scope(Instrument).where(category: params[:category])
+      @instruments = policy_scope(Instrument).where(category: params[:category])
     else
       @instruments = policy_scope(Instrument)
+      @instrument = Instrument.find(params[:id])
     end
   end
 
   def show
     @instrument = Instrument.find(params[:id])
     authorize @instrument
+
+    # the `geocoded` scope filters only instruments with coordinates (latitude & longitude)
+    if @instrument.geocoded?
+      @markers =[{
+                  lat: @instrument.latitude,
+                  lng: @instrument.longitude
+                }]
+    else
+      @markers = [{}]
+    end
+
     @booking = Booking.new
     authorize @booking
   end
