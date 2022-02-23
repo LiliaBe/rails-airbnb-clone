@@ -5,7 +5,7 @@
 <div class="container " >
   <div class="grid-container my-5">
     <% @instruments = Instrument.where(category: params[:category]) %>
-    <% if @instruments.nil? %>
+    <% if @instruments.empty? %>
       <div>
         <%= "There is no instrument in this category"%>
       </div>
