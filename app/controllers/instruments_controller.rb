@@ -3,9 +3,10 @@ class InstrumentsController < ApplicationController
 
   def index
     if params[:category]
-    @instruments = policy_scope(Instrument).where(category: params[:category])
+      @instruments = policy_scope(Instrument).where(category: params[:category])
     else
       @instruments = policy_scope(Instrument)
+      @instrument = Instrument.find(params[:id])
     end
   end
 
