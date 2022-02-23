@@ -1,12 +1,18 @@
 
-<div class="booking bg-white rounded p-4 shadow">
-  <h3 class="mb-3">Book an instrument</h3>
-  <div>
-    <p class="price-tag" ><strong><%=@instrument.price%> €</strong> / per day</p>
-  </div>
-  <%= simple_form_for @booking do |f| %>
-    <%= f.input :start_date, as: :date, placeholder: 'Check-in' %>
-    <%= f.input :end_date,  as: :date, placeholder: 'check-out' %>
-    <%= f.submit class: 'btn btn-flat' %>
-  <% end %>
-</div>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="booking bg-white rounded p-4 shadow">
+        <h3 class="mb-3">Book an instrument</h3>
+        <div>
+          <p class="price-tag" ><strong><%=@instrument.price%> €</strong> / per day</p>
+        </div>
+        <%= simple_form_for [@instrument, @booking] do |f| %>
+          <%= f.input :start_date,  as: :string, input_html: {type: :date}, placeholder: 'Check-in' %>
+          <%= f.input :end_date,  as: :string, input_html: {type: :date}, placeholder: 'check-out' %>
+          <%= f.submit class: 'btn btn-flat', data: { confirm: "Are you sure you want to create a booking ?"} %>
+        <% end %>
+      </div>
+    </div>
+
+  
