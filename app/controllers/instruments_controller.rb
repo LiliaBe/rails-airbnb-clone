@@ -19,7 +19,7 @@ class InstrumentsController < ApplicationController
     @instrument.user = current_user
     authorize @instrument
     if @instrument.save
-      redirect_to instruments_path
+      redirect_to root_path
     else
       render :new
     end
@@ -50,6 +50,6 @@ class InstrumentsController < ApplicationController
   private
 
   def instrument_params
-    params.require(:instrument).permit(:name, :category, :location, :description, :rating, :price)
+    params.require(:instrument).permit(:photo, :name, :category, :location, :description, :rating, :price)
   end
 end
