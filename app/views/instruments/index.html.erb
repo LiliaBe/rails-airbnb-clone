@@ -11,17 +11,19 @@
       </div>
     <% else %>
       <% @instruments.each do |instrument| %>
-        <div class="card-trip">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-            <div class="card-trip-infos">
-              <div>
-                <h2><%=instrument.name %></h2>
-                <p><%=instrument.description %></p>
+        <%= link_to instrument_path(instrument) do %>
+          <div class="card-trip">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+              <div class="card-trip-infos">
+                <div>
+                  <h2><%=instrument.name %></h2>
+                  <p><%=instrument.description %></p>
+                </div>
+                <h2 class="card-trip-pricing"><%=instrument.price%>€</h2>
+                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
               </div>
-              <h2 class="card-trip-pricing"><%=instrument.price%>€</h2>
-              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
-            </div>
-        </div>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
