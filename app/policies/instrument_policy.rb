@@ -4,6 +4,10 @@ class InstrumentPolicy < ApplicationPolicy
     true
   end
 
+  def show?
+    true
+  end
+
   def update?
     record.user == user
     # - record: the restaurant passed to the `authorize` method in controller

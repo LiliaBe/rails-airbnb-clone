@@ -1,5 +1,5 @@
 class InstrumentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     if params[:category]
@@ -7,6 +7,11 @@ class InstrumentsController < ApplicationController
     else
       @instruments = policy_scope(Instrument)
     end
+  end
+
+  def show
+    @instrument = Instrument.find(params[:id])
+    authorize @instrument
   end
 
   def new
