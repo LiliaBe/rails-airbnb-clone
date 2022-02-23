@@ -6,7 +6,7 @@
         <%= simple_form_for @instrument do |f| %>
           <%= f.input :name, placeholder: 'Instrument name' %>
           <%= f.input :category, placeholder: 'Instrument category', collection: Instrument::CATEGORY %>
-          <%= f.input :description, placeholder: 'Instrument description' %>
+          <%= f.input :description, placeholder: 'Instrument description', minlength: 25%>
           <%= f.input :location, placeholder: 'Your address' %>
           <%= f.input :price, placeholder: 'price per day' %>
           <%= f.input :photo, as: :file %>
