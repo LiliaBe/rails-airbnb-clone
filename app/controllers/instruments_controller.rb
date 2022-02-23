@@ -1,5 +1,5 @@
 class InstrumentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     if params[:category]
@@ -7,6 +7,11 @@ class InstrumentsController < ApplicationController
     else
       @instruments = policy_scope(Instrument)
     end
+  end
+
+  def show
+    @instrument = Instrument.find(params[:id])
+    authorize @instrument
   end
 
   def new
@@ -19,7 +24,7 @@ class InstrumentsController < ApplicationController
     @instrument.user = current_user
     authorize @instrument
     if @instrument.save
-      redirect_to instruments_path
+      redirect_to root_path
     else
       render :new
     end
@@ -50,6 +55,6 @@ class InstrumentsController < ApplicationController
   private
 
   def instrument_params
-    params.require(:instrument).permit(:name, :category, :location, :description, :rating, :price)
+    params.require(:instrument).permit(:photo, :name, :category, :location, :description, :rating, :price)
   end
 end

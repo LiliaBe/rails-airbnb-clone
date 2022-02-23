@@ -1,0 +1,15 @@
+<div class="container">
+
+  <h1> <%= @instrument.name %> </h1>
+  <p> <strong>Description:</strong> <%= @instrument.description %> </p>
+  <p> <strong>Price per day:</strong> <%= @instrument.price %> </p>
+
+</div>
+
+<div>
+  <% if @instrument.photo.attached? %>
+    <%= cl_image_tag @instrument.photo.key, width: 300, crop: :fill %>
+  <% else %>
+    <%= image_tag "https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80", width: 300, crop: :fill %>
+  <% end %>
+</div>
