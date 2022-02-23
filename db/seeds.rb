@@ -139,7 +139,7 @@ instru = Instrument.new(
   location: 'Paris',
   rating: 5,
   description: "A good capodaster",
-  price: 55
+  price: 1
 )
 instru.user = user3
 instru.save!
