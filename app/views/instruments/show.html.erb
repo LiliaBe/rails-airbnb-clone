@@ -1,9 +1,3 @@
-<div style="width: 25%; height: 300px;"
-  data-controller="mapbox"
-  data-mapbox-markers-value="<%= @markers.to_json %>"
-  data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
-
 <div class="container my-5">
   <div class="flex-container">
     <div class="bg-white rounded p-3 shadow">
@@ -20,8 +14,15 @@
         <% end %>
       </div>
     </div>
+    <div>
+      <div style="width: auto; height: 200px;"
+        data-controller="mapbox"
+        data-mapbox-markers-value="<%= @markers.to_json %>"
+        data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
       <div>
         <%= render "bookings/new" %>
       </div>
+    </div>
   </div>
 </div>
