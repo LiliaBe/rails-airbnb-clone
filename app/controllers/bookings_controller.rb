@@ -10,9 +10,9 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     authorize @booking
     if @booking.save
-      redirect_to instruments_path
+      redirect_to instrument_path(instrument)
     else
-      render :new
+      render "bookings/new"
     end
   end
 end
