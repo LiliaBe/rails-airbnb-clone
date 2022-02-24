@@ -9,7 +9,6 @@
         <%= "No result find for #{params[:query]} "%>
       </div>
     <% else %>
-
       <% @instruments.each do |instrument| %>
         <%= link_to instrument_path(instrument) do %>
           <div class="card-trip">

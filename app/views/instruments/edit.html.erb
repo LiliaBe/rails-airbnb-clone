@@ -1,0 +1,18 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+        <h3>Edit your instrument</h3>
+        <%= simple_form_for @instrument do |f| %>
+          <%= f.input :name, placeholder: 'Instrument name' %>
+          <%= f.input :category, placeholder: 'Instrument category', collection: Instrument::CATEGORY %>
+          <%= f.input :description, placeholder: 'Instrument description', minlength: 25%>
+          <%= f.input :location, placeholder: 'Your address' %>
+          <%= f.input :price, placeholder: 'price per day' %>
+          <%= f.input :photo, as: :file %>
+          <%= f.submit class: 'btn btn-flat' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
