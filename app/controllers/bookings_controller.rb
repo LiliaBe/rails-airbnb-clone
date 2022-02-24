@@ -13,7 +13,6 @@ class BookingsController < ApplicationController
     @booking.end_date = @booking.end_date.to_date
     @booking.instrument = @instrument
     authorize @booking
-
     if @booking.save
       redirect_to instrument_path(@instrument)
     else
