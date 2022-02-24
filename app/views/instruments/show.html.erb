@@ -7,7 +7,14 @@
           <p> <strong>Description :</strong> <%= @instrument.description %> </p>
         </div>
         <div>
-          <p> This is <strong> <%=  @instrument.user.first_name.capitalize %>'s </strong> instrument </p>
+          <div class="profile-flex">
+          <h5 class="p-profile"> <strong> <%= @instrument.user.first_name.capitalize %>'s </strong> instrument </h5>
+            <%if current_user.photo.attached?%>
+              <%= cl_image_tag current_user.photo.key, class:"avatar" %>
+            <%else%>
+              <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class: "avatar"%>
+            <%end%>
+          </div>
           <p> Member since <strong> <%= better_time(@instrument.user.created_at) %> </strong> </p>
         </div>
       </div>
@@ -19,9 +26,21 @@
             <%= image_tag "https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80", width: 500, height: 300, crop: :fill %>
           <% end %>
         </div>
-        <div>
-          <i class="fas fa-star"></i>
-          <h5 class="reviews">Recent reviews</h3>
+        <div class="reviews">
+          <h3>Reviews</h3>
+            <% if @reviews.empty? %>
+              <small><em class="text-muted">Be the first one to review this list</em></small>
+            <% end %>
+            <% @reviews.each do |review| %>
+              <div>
+                <% review.rating.times do %>
+                  <i class="fas fa-star star-yellow"></i>
+                <% end %>
+                <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+                <p class="mb-0"><%= review.comment %></p>
+              </div>
+              <hr>
+            <% end %>
         </div>
       </div>
         <div>
@@ -49,22 +68,5 @@
         </div>
         <% end %>
       </div>
-    </div>
-
-    <div>
-      <h3>Reviews</h3>
-        <% if @reviews.empty? %>
-          <small><em class="text-muted">Be the first one to review this list</em></small>
-        <% end %>
-        <% @reviews.each do |review| %>
-          <div>
-            <% review.rating.times do %>
-              <i class="fas fa-star star-yellow"></i>
-            <% end %>
-            <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
-            <p class="mb-0"><%= review.comment %></p>
-          </div>
-          <hr>
-        <% end %>
     </div>
 </div>
