@@ -7,7 +7,11 @@
 .info {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.info-description {
+  max-width: 500px;
 }
 
 .instrument-info {
@@ -45,14 +49,15 @@
   padding: 10px;
 }
 
-.profile-flex {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
 .p-profile {
   margin-bottom: 0;
   margin-right: 8px;
+}
 
+.card-owner {
+  display: flex;
+  text-align: right;
+  align-items: center;
+  min-width: 28%;
+  margin-left: 5px;
 }

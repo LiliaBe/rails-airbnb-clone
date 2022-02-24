@@ -2,22 +2,22 @@
   <div class="flex-container">
     <div class="bg-white rounded p-3 shadow instrument-info">
       <div class="info">
-        <div>
+        <div class="info-description">
           <h1> <%= @instrument.name %> </h1>
           <p> <strong>Description :</strong> <%= @instrument.description %> </p>
         </div>
-        <div>
-          <div class="profile-flex">
-          <h5 class="p-profile"> <strong> <%= @instrument.user.first_name.capitalize %>'s </strong> instrument </h5>
+          <div class="card-owner">
+            <div class="info-owner">
+              <h5 class="p-profile"> <strong> <%= @instrument.user.first_name.capitalize %>'s </strong> instrument </h5>
+              <p class="mb-0"> Member since <strong> <%= better_time(@instrument.user.created_at) %> </strong> </p>
+            </div>
             <%if current_user.photo.attached?%>
-              <%= cl_image_tag current_user.photo.key, class:"avatar" %>
+              <%= cl_image_tag current_user.photo.key, class:"avatar-medium"%>
             <%else%>
-              <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class: "avatar"%>
+              <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class: "avatar-medium" %>
             <%end%>
           </div>
-          <p> Member since <strong> <%= better_time(@instrument.user.created_at) %> </strong> </p>
         </div>
-      </div>
       <div class="instrument-image-flex">
         <div class="instrument-image">
           <% if @instrument.photo.attached? %>
