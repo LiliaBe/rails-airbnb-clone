@@ -60,8 +60,7 @@ class InstrumentsController < ApplicationController
     @instrument = Instrument.find(params[:id])
     @instrument.destroy
     authorize @instrument
-
-    redirect_to instrument_path
+    redirect_to root_path
   end
 
   private
