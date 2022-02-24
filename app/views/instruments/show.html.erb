@@ -23,7 +23,7 @@
           <%= link_to "Remove Listing", instrument_path(@instrument.id), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-outline-secondary' %>
         <% end %>
           <% if  current_user.id == @instrument.user_id %>
-            <%= link_to "EDIT", edit_instrument_path(@instrument.id) %>
+            <%= link_to "Edit Listing", edit_instrument_path(@instrument.id), class: 'btn btn-outline-secondary' %>
           <% end %>
       </div>
     </div>
