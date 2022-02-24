@@ -61,13 +61,12 @@ class InstrumentsController < ApplicationController
     @instrument = Instrument.find(params[:id])
     @instrument.destroy
     authorize @instrument
-
-    redirect_to instrument_path
+    redirect_to root_path
   end
 
   private
 
   def instrument_params
     params.require(:instrument).permit(:photo, :name, :category, :location, :description, :rating, :price)
-  end
+    end
 end
