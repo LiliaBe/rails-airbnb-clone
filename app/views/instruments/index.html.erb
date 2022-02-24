@@ -1,13 +1,12 @@
 <div class="banner mb-40" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80);">
-  <h1><%=params[:category] %></h1>
+  <h1><%=params[:query] %></h1>
 </div>
 
 <div class="container " >
   <div class="grid-container my-5">
-    <% @instruments = Instrument.where(category: params[:category]) %>
     <% if @instruments.empty? %>
       <div>
-        <%= "There is no instrument in this category"%>
+        <%= "No result find for #{params[:query]} "%>
       </div>
     <% else %>
 

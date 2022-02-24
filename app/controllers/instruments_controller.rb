@@ -2,8 +2,12 @@ class InstrumentsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    if params[:category]
+    if params[:query].present? && params[:category] == true
+      sql_query = "name ILIKE :query OR description ILIKE :query OR category ILIKE :query"
       @instruments = policy_scope(Instrument).where(category: params[:category])
+    elsif  params[:query].present?
+      sql_query = "name ILIKE :query OR description ILIKE :query OR category ILIKE :query"
+      @instruments = policy_scope(Instrument).where(sql_query, query: "%#{params[:query]}%")
     else
       @instruments = policy_scope(Instrument)
     end
