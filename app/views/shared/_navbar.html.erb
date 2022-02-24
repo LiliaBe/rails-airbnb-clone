@@ -10,6 +10,20 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
+        <li class="nav-item active">
+          <%= form_tag instruments_path, method: :get do %>
+            <div class="d-flex me-3 mt-1">
+              <%= text_field_tag :query,
+                params[:query],
+                class: "form-control searchTerm",
+                placeholder: "find an instrument"
+              %>
+              <%= button_tag(type: "submit", class: "searchButton") do %>
+                  <i class="fa fa-search"></i>
+                <% end %>
+            </div>
+          <% end %>
+        </li>
         <% if user_signed_in? %>
           <li class="nav-item active">
             <%= link_to "Instruments", root_path, class: "nav-link" %>
