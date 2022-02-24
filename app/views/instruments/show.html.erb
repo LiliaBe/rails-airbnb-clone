@@ -29,7 +29,11 @@
         <div class="reviews">
           <h3>Reviews</h3>
             <% if @reviews.empty? %>
-              <small><em class="text-muted">Be the first one to review this rent</em></small>
+              <%if @instrument.user != current_user%>
+                <small><em class="text-muted">Be the first one to review this rent</em></small>
+              <%else%>
+                <small><em class="text-muted">No member has let a review yet</em></small>
+              <%end%>
             <% end %>
             <% @reviews.each do |review| %>
               <div>
@@ -70,7 +74,7 @@
           <% end %>
         </div>
       <%else%>
-        <h3 class="text-center pt-5">Your instrument <i class="fa-solid fa-guitar-electric"></i></h3>
+        <h3 class="text-center pt-5">Your instrument <i class="fas fa-solid fa-guitar-electric"></i></h3>
       <%end%>
     </div>
 </div>
