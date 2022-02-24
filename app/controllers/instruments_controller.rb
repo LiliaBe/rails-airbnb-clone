@@ -11,19 +11,7 @@ class InstrumentsController < ApplicationController
 
   def show
     @instrument = Instrument.find(params[:id])
-    @bookings = Booking.where(user: current_user, instrument: @instrument)
     authorize @instrument
-    if @instrument.geocoded?
-      @markers =
-      [{
-        lat: @instrument.latitude,
-        lng: @instrument.longitude
-      }]
-    else
-       @markers = [{}]
-    end
-    @booking = Booking.new
-    authorize @booking
   end
 
   def new
@@ -68,5 +56,5 @@ class InstrumentsController < ApplicationController
 
   def instrument_params
     params.require(:instrument).permit(:photo, :name, :category, :location, :description, :rating, :price)
-  end
+    end
 end
