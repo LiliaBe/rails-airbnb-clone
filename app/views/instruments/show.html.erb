@@ -29,7 +29,7 @@
         <div class="reviews">
           <h3>Reviews</h3>
             <% if @reviews.empty? %>
-              <small><em class="text-muted">Be the first one to review this list</em></small>
+              <small><em class="text-muted">Be the first one to review this rent</em></small>
             <% end %>
             <% @reviews.each do |review| %>
               <div>
@@ -45,10 +45,10 @@
       </div>
         <div>
         <% if  current_user.id == @instrument.user_id %>
-          <%= link_to "Remove Listing", instrument_path(@instrument.id), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-outline-secondary' %>
+          <%= link_to "Remove Rent", instrument_path(@instrument.id), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-outline-secondary' %>
         <% end %>
           <% if  current_user.id == @instrument.user_id %>
-            <%= link_to "Edit Listing", edit_instrument_path(@instrument.id), class: 'btn btn-outline-secondary' %>
+            <%= link_to "Edit Rent", edit_instrument_path(@instrument.id), class: 'btn btn-outline-secondary' %>
           <% end %>
       </div>
     </div>
@@ -58,15 +58,19 @@
         data-mapbox-markers-value="<%= @markers.to_json %>"
         data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
-      <div>
-        <% if @bookings.empty? %>
-        <%= render "bookings/new" %>
-        <% else %>
-        <div class="booked">
-          <h3> Nice! 👍 </h3>
-          <p>You request has been sent!</p>
+      <%if @instrument.user != current_user%>
+        <div>
+          <% if @bookings.empty? %>
+            <%= render "bookings/new" %>
+          <% else %>
+            <div class="booked">
+              <h3> Nice! 👍 </h3>
+              <p>You request has been sent!</p>
+            </div>
+          <% end %>
         </div>
-        <% end %>
-      </div>
+      <%else%>
+        <h3 class="text-center pt-5">Your instrument <i class="fa-solid fa-guitar-electric"></i></h3>
+      <%end%>
     </div>
 </div>
