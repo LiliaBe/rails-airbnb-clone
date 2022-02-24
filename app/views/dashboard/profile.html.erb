@@ -1,0 +1,17 @@
+<ul class="list-inline tabs-underlined">
+  <li>
+    <a href="#" class="tab-underlined active">My profile</a>
+  </li>
+  <li>
+  </li>
+    <%= link_to "My instruments", rentals_path, class: "tab-underlined"%>
+  <li>
+    <%= link_to "My rentals", rented_path, class: "tab-underlined"%>
+  </li>
+</ul>
+<%if @user.photo.attached?%>
+  <%= cl_image_tag @user.photo.key %>
+<%else%>
+
+<%end%>
+<%# <%@user.first_name @user.last_name %>

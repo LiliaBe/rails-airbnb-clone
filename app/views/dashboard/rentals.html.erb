@@ -1,0 +1,42 @@
+<ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "My profile", profile_path, class: "tab-underlined"%>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined active">My instruments</a>
+  </li>
+  <li>
+    <%= link_to "My rentals", rented_path, class: "tab-underlined"%>
+  </li>
+</ul>
+
+<div class="container " >
+  <div class="grid-container my-5">
+    <% if @rentals.empty? %>
+      <div>
+        <%= "You haven't rent an instrument yet"%>
+      </div>
+    <% else %>
+
+      <% @rentals.each do |rental| %>
+        <%= link_to instrument_path(rental) do %>
+          <div class="card-trip">
+            <% if rental.photo.attached? %>
+              <%= cl_image_tag rental.photo.key %>
+            <% else %>
+              <%= image_tag "https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" %>
+            <% end %>
+              <div class="card-trip-infos">
+                <div>
+                  <h2><%=rental.name %></h2>
+                  <p><%=rental.description.truncate(32) %></p>
+                </div>
+                <h2 class="card-trip-pricing"><%=rental.price%>€</h2>
+                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+              </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
