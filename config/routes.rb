@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  get 'search', to: "instruments#search"
   resources :instruments do
     resources :bookings, only: [:create]
   end
@@ -8,5 +9,4 @@ Rails.application.routes.draw do
   get "rented", to: 'dashboard#rented', as: :rented
   get "profile", to: 'dashboard#profile', as: :profile
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
 end

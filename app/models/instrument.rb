@@ -12,4 +12,11 @@ class Instrument < ApplicationRecord
   validates :location, presence: true
   validates :description, presence: true
   validates :price, presence: true, numericality: { only_integer: true }
+
+  include PgSearch::Model
+  pg_search_scope :global_search,
+    against: [ :title, :category, :location, :description],
+    using: {
+      tsearch: { prefix: true }
+    }
 end
