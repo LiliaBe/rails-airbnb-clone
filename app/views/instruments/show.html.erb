@@ -1,23 +1,30 @@
 <div class="container my-5">
   <div class="flex-container">
     <div class="bg-white rounded p-3 shadow instrument-info">
-      <div>
-        <% if  current_user.id == @instrument.user_id %>
-          <%= link_to "DELETE", instrument_path(@instrument.id), method: :delete, data: { confirm: "Are you sure?" } %>
-        <% end %>
+      <div class="info">
+        <div>
+          <h1> <%= @instrument.name %> </h1>
+          <p> <strong>Description :</strong> <%= @instrument.description %> </p>
+        </div>
+        <div>
+          <p> <strong> Owned by : </strong> <%=  @instrument.user.first_name %>
+          <p> <%= @instrument.user.bio %> </p>
+        </div>
       </div>
       <div>
-        <h1> <%= @instrument.name %> </h1>
-        <p> <strong>Description :</strong> <%= @instrument.description %> </p>
-        <p> <strong> Owned by : </strong> <%=  @instrument.user.first_name %>
-        <p> <%= @instrument.user.bio %> </p>
-      </div>
-      <div class>
         <% if @instrument.photo.attached? %>
-          <%= cl_image_tag @instrument.photo.key, width: 550, height: 400, crop: :fill %>
+          <%= cl_image_tag @instrument.photo.key, width: 500, height: 300, crop: :fill %>
         <% else %>
-          <%= image_tag "https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80", width: 550, height: 400, crop: :fill %>
+          <%= image_tag "https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80", width: 500, height: 300, crop: :fill %>
         <% end %>
+      </div>
+        <div>
+        <% if  current_user.id == @instrument.user_id %>
+          <%= link_to "Remove Listing", instrument_path(@instrument.id), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-outline-secondary' %>
+        <% end %>
+          <% if  current_user.id == @instrument.user_id %>
+            <%= link_to "EDIT", edit_instrument_path(@instrument.id) %>
+          <% end %>
       </div>
     </div>
     <div class="booking bg-white rounded shadow">

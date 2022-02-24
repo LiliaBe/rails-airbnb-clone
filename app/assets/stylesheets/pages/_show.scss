@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .instrument-info {
   width: 65vw;
   height: 75vh;
