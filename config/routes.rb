@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   get "rentals", to: 'dashboard#rentals', as: :rentals
   get "rented", to: 'dashboard#rented', as: :rented
+  get "profile", to: 'dashboard#profile', as: :profile
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end
