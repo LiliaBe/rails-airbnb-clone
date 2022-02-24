@@ -43,8 +43,10 @@
         <% if @bookings.empty? %>
         <%= render "bookings/new" %>
         <% else %>
-        <h3>Congratulations!</h3>
-        <p>You request has been sent!</p>
+        <div class="booked">
+          <h3> Nice! 👍 </h3>
+          <p>You request has been sent!</p>
+        </div>
         <% end %>
       </div>
     </div>
