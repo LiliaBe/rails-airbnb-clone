@@ -3,7 +3,7 @@
     <div class="bg-white rounded p-3 shadow">
       <div>
         <% if  current_user.id == @instrument.user_id %>
-          <%= link_to "delete this instrument", instrument_path(@instrument.id), method: :delete, data: { confirm: "Are you sure?" } %>
+          <%= link_to "DELETE", instrument_path(@instrument.id), method: :delete, data: { confirm: "Are you sure?" } %>
         <% end %>
       </div>
       <div>
