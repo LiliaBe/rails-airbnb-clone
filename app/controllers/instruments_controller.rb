@@ -17,7 +17,8 @@ class InstrumentsController < ApplicationController
       @markers =
       [{
         lat: @instrument.latitude,
-        lng: @instrument.longitude
+        lng: @instrument.longitude,
+        image_url: helpers.asset_url("music_categories/drum-kit.png")
       }]
     else
        @markers = [{}]
