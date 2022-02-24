@@ -2,6 +2,11 @@
   <div class="flex-container">
     <div class="bg-white rounded p-3 shadow instrument-info">
       <div>
+        <% if  current_user.id == @instrument.user_id %>
+          <%= link_to "DELETE", instrument_path(@instrument.id), method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+      </div>
+      <div>
         <h1> <%= @instrument.name %> </h1>
         <p> <strong>Description :</strong> <%= @instrument.description %> </p>
         <p> <strong> Owned by : </strong> <%=  @instrument.user.first_name %>
@@ -30,5 +35,4 @@
         <% end %>
       </div>
     </div>
-  </div>
 </div>
