@@ -17,7 +17,8 @@ class InstrumentsController < ApplicationController
       @markers =
       [{
         lat: @instrument.latitude,
-        lng: @instrument.longitude
+        lng: @instrument.longitude,
+        image_url: helpers.asset_url("music_categories/drum-kit.png")
       }]
     else
        @markers = [{}]
@@ -60,8 +61,7 @@ class InstrumentsController < ApplicationController
     @instrument = Instrument.find(params[:id])
     @instrument.destroy
     authorize @instrument
-
-    redirect_to instrument_path
+    redirect_to root_path
   end
 
   private

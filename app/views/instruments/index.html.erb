@@ -10,7 +10,6 @@
         <%= "There is no instrument in this category"%>
       </div>
     <% else %>
-
       <% @instruments.each do |instrument| %>
         <%= link_to instrument_path(instrument) do %>
           <div class="card-trip">
