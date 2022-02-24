@@ -15,4 +15,5 @@ class DashboardController < ApplicationController
       @rented << b.instrument
     end
   end
+
 end
