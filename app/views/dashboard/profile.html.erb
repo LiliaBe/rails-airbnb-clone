@@ -1,24 +1,23 @@
 <ul class="list-inline tabs-underlined">
   <li>
-    <a href="#" class="tab-underlined active">My profile</a>
+    <%= link_to "My profile", "#", class: "tab-underlined active"%>
   </li>
   <li>
-  </li>
     <%= link_to "My instruments", rentals_path, class: "tab-underlined"%>
+  </li>
   <li>
     <%= link_to "My rentals", rented_path, class: "tab-underlined"%>
   </li>
 </ul>
+
 <div class="container d-flex">
   <%if @user.photo.attached?%>
     <%= cl_image_tag @user.photo.key, class:"avatar-large" %>
   <%else%>
-    <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", width: 500, height: 300, crop: :fill %>
+    <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class:"avatar-large" %>
   <%end%>
   <div class="info">
-    <h3>blabla<%=@user.first_name%>" " <%@user.last_name%></h3>
+    <h3><%=@user.first_name%>  <%=@user.last_name%></h3>
+    <p><%=@user.bio%></p>
   </div>
 </div>
-
-
-<%# <%@user.first_name @user.last_name %>
