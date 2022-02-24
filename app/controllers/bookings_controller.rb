@@ -13,6 +13,7 @@ class BookingsController < ApplicationController
     @instrument = Instrument.find(params[:instrument_id])
     @booking = Booking.new(booking_params)
     @booking.user = current_user
+    @reviews = Review.all
 
     @booking.start_date = @booking.start_date.to_date unless @booking.start_date.nil?
     @booking.end_date = @booking.end_date.to_date unless @booking.end_date.nil?
