@@ -18,9 +18,22 @@
   justify-content: space-between;
 }
 
+.instrument-image-flex {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.instrument-image {
+  margin-right: 15px;
+}
+
 .booking {
     border: 2px solid $green;
     width: 35vw;
     height: 75vh;
     margin-left: 10px;
   }
+
+.reviews {
+  text-align: left;
+}
