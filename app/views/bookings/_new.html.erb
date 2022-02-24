@@ -2,7 +2,7 @@
       <div class="rounded p-3 mt-2">
         <h3 class="mb-3">Rent this <%= @instrument.name %> </h3>
         <div>
-          <p class="price-tag" ><strong><%=@instrument.price%> €</strong> / per day</p>
+          <p class="price-tag" ><strong><%=@instrument.price%> €</strong> / day</p>
         </div>
         <%= simple_form_for [@instrument, @booking] do |f| %>
           <%= f.input :start_date,  as: :string, input_html: {type: :date}, placeholder: 'Check-in' %>
