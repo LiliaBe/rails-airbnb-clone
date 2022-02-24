@@ -5,6 +5,10 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
   def create
     @instrument = Instrument.find(params[:instrument_id])
     @booking = Booking.new(booking_params)
