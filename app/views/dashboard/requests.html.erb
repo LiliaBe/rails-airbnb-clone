@@ -1,5 +1,3 @@
-<h1>Les requêtes </h1>
-
 <ul class="list-inline tabs-underlined">
   <li>
     <%= link_to "My profile", profile_path, class: "tab-underlined"%>
@@ -15,80 +13,34 @@
   </li>
 </ul>
 
-<div class="container my-5">
-  <div class="flex-container">
-<div class="bg-white rounded p-3 shadow instrument-info">
-      <div class="info">
-        <div class="info-description">
-          <h1> <%= @instrument.name %> </h1>
-          <p> <strong>Description :</strong> <%= @instrument.description %> </p>
-        </div>
-          <div class="card-owner">
-            <div class="info-owner">
-              <h5 class="p-profile"> <strong> <%= @instrument.user.first_name.capitalize %>'s </strong> instrument </h5>
-              <p class="mb-0"> Member since <strong> <%= better_time(@instrument.user.created_at) %> </strong> </p>
-            </div>
-            <%if current_user.photo.attached?%>
-              <%= cl_image_tag current_user.photo.key, class:"avatar-medium"%>
-            <%else%>
-              <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class: "avatar-medium" %>
-            <%end%>
-          </div>
-        </div>
-      <div class="instrument-image-flex">
-        <div class="instrument-image">
-          <% if @instrument.photo.attached? %>
-            <%= cl_image_tag @instrument.photo.key, width: 500, height: 300, crop: :fill %>
-          <% else %>
-            <%= image_tag "https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80", width: 500, height: 300, crop: :fill %>
-          <% end %>
-        </div>
-        <div class="reviews">
-          <h3>Reviews</h3>
-            <% if @reviews.empty? %>
-              <small><em class="text-muted">Be the first one to review this rent</em></small>
-            <% end %>
-            <% @reviews.each do |review| %>
-              <div>
-                <% review.rating.times do %>
-                  <i class="fas fa-star star-yellow"></i>
-                <% end %>
-                <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
-                <p class="mb-0"><%= review.comment %></p>
-              </div>
-              <hr>
-            <% end %>
-        </div>
+<div class="container flex-container my-5">
+    <div class="accepted-bookings">
+      <div class="oncoming-bookings">
+        <h3>Oncoming bookings</h3>
       </div>
-        <div>
-        <% if  current_user.id == @instrument.user_id %>
-          <%= link_to "Remove Rent", instrument_path(@instrument.id), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-outline-secondary' %>
-        <% end %>
-          <% if  current_user.id == @instrument.user_id %>
-            <%= link_to "Edit Rent", edit_instrument_path(@instrument.id), class: 'btn btn-outline-secondary' %>
-          <% end %>
+      <div class="passed-bookings">
+        <h3>Passed bookings</h3>
       </div>
     </div>
-    <div class="booking bg-white rounded shadow">
-      <div style="width: auto; height: 200px;"
-        data-controller="mapbox"
-        data-mapbox-markers-value="<%= @markers.to_json %>"
-        data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-      <%if @instrument.user != current_user%>
-        <div>
-          <% if @bookings.empty? %>
-            <%= render "bookings/new" %>
-          <% else %>
-            <div class="booked">
-              <h3> Nice! 👍 </h3>
-              <p>You request has been sent!</p>
-            </div>
-          <% end %>
+    <div class="pending-bookings">
+        <h3>Pending bookings</h3>
+
+
+      <%# bookings.where{pending==true}.each do
+        <div class="carte">
+          tete du loueur
+          intru qu'il vaut loueur
+          dates
+          bouton "accept", bouton "refuse"
         </div>
-      <%else%>
-        <h3 class="text-center pt-5">Your instrument <i class="fa-solid fa-guitar-electric"></i></h3>
-      <%end%>
+      end %>
+
+      <%# <div class="card-product">
+        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+        <div class="card-product-infos">
+          <h2>Product name</h2>
+          <p>Product description with <strong>relevant info</strong> only.</p>
+        </div>
+      </div> %>
     </div>
-  </div>
 </div>
