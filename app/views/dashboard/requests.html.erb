@@ -23,8 +23,17 @@
       </div>
     </div>
     <div class="pending-bookings">
-        <h3>Pending bookings</h3>
-
+      <h3>Pending bookings</h3>
+      <%@my_instru.each do |i| %>
+        <%i.bookings.each do |b| %>
+        <p>Plop</p>
+          <%if b.answered == false%>
+            <p><%=i.name%></p>
+          <%else%>
+            <p><%=i.name%></p>
+          <%end%>
+        <%end%>
+      <%end%>
 
       <%# bookings.where{pending==true}.each do
         <div class="carte">

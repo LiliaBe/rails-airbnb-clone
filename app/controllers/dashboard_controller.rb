@@ -20,6 +20,6 @@ class DashboardController < ApplicationController
 
   def requests
     @user = current_user
-    @bookings = @user.bookings
+    @my_instru = @user.instruments
   end
 end
