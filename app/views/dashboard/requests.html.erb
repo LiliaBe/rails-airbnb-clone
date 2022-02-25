@@ -34,7 +34,7 @@
                   <p class="mb-0"> Member since <strong> <%= better_time(b.user.created_at) %> </strong> </p>
                 </div>
                 <%if b.instrument.user.photo.attached?%>
-                  <%= cl_image_tag i.user.photo.key, class:"avatar-medium"%>
+                  <%= cl_image_tag b.instrument.user.photo.key, class:"avatar-medium"%>
                 <%else%>
                   <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class: "avatar-medium" %>
                 <%end%>
