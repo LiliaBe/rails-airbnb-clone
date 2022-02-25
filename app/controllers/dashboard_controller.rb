@@ -17,4 +17,9 @@ class DashboardController < ApplicationController
       @rented << b.instrument
     end
   end
+
+  def requests
+    @user = current_user
+    @my_instru = @user.instruments
+  end
 end
