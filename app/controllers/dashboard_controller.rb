@@ -13,7 +13,8 @@ class DashboardController < ApplicationController
   def rented
     @user = current_user
     @rented = []
-    @user.bookings.each do |b|
+    @bookings = @user.bookings
+    @bookings.each do |b|
       @rented << b.instrument
     end
   end
