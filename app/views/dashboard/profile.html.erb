@@ -1,4 +1,4 @@
-<ul class="list-inline tabs-underlined">
+<ul class="list-inline tabs-underlined mt-2">
   <li>
     <%= link_to "My profile", "#", class: "tab-underlined active"%>
   </li>
@@ -8,19 +8,24 @@
   <li>
     <%= link_to "My rentals", rented_path, class: "tab-underlined"%>
   </li>
+  <li>
+    <%= link_to "My requests", requests_path, class: "tab-underlined"%>
+  </li>
 </ul>
 
-<div class="container d-flex">
+<div class="container d-flex card-align mt-5">
   <%if @user.photo.attached?%>
     <%= cl_image_tag @user.photo.key, class:"avatar-large" %>
   <%else%>
     <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class:"avatar-large" %>
   <%end%>
-  <div class="info">
+  <div class="card-trip to-bottom ms-5">
     <h3><%=@user.first_name%>  <%=@user.last_name%></h3>
-    <p><%=@user.bio%></p>
+    <div>
+      <p><%=@user.bio%></p>
+    </div>
+    <%= link_to "Edit my profile", edit_user_registration_path(current_user), class: "btn btn-outline-secondary custom-btn-fit-content" %>
   </div>
   <div>
-    <%= link_to "Edit my profile", edit_user_registration_path(current_user) %>
   </div>
 </div>
