@@ -16,7 +16,7 @@ class InstrumentsController < ApplicationController
   def show
     @instrument = Instrument.find(params[:id])
     @bookings = Booking.where(user: current_user, instrument: @instrument)
-    @reviews = Review.all
+    @reviews = @instrument.reviews
     authorize @instrument
     if @instrument.geocoded?
       @markers =
