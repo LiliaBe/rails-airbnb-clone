@@ -1,98 +1,106 @@
-<ul class="list-inline tabs-underlined">
-  <li>
-    <%= link_to "My profile", profile_path, class: "tab-underlined"%>
-  </li>
-  <li>
-    <%= link_to "My instruments", rentals_path, class: "tab-underlined"%>
-  </li>
-  <li>
-    <%= link_to "My rentals", rented_path, class: "tab-underlined"%>
-  </li>
-  <li>
-    <%= link_to "My requests", "#", class: "tab-underlined active"%>
-  </li>
-</ul>
-<div class="container my-5">
-    <div class="pending-bookings flex-container">
-      <div class="my-bookings">
-      <h3>My sent rentals</h3>
-        <%current_user.bookings.each do |b|%>
-          <div class="request-card">
-            <p>b.instrument.name</p>
-          </div>
-        <%end%>
-      </div>
-      <div class="others-bookings">
-        <h3>Pending bookings</h3>
-        <%@my_instru.each do |i| %>
-          <%i.bookings.each do |b| %>
-            <%if b.answered == false%>
-              <div class="request-card d-flex">
-                <div class="instrument-image">
-                  <% if i.photo.attached? %>
-                    <%= cl_image_tag i.photo.key, width: 100, height: 70, crop: :fill %>
-                  <% else %>
-                    <%= image_tag "https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80", width: 100, height: 70, crop: :fill %>
-                  <% end %>
-                </div>
-                <div class="request-info">
-                  <div class="info-renter">
-                    <h5 class="p-profile"> Asked by <strong> <%= b.user.first_name.capitalize %> </strong> </h5>
-                    <p class="mb-0"> Member since <strong> <%= better_time(b.user.created_at) %> </strong> </p>
+<div class="container">
+  <ul class="list-inline tabs-underlined mt-2">
+    <li>
+      <%= link_to "My profile", profile_path, class: "tab-underlined"%>
+    </li>
+    <li>
+      <%= link_to "My instruments", rentals_path, class: "tab-underlined"%>
+    </li>
+    <li>
+      <%= link_to "My rentals", rented_path, class: "tab-underlined"%>
+    </li>
+    <li>
+      <%= link_to "My requests", "#", class: "tab-underlined active"%>
+    </li>
+  </ul>
+  <div class="container my-5 w-100">
+      <div class="pending-bookings d-flex justify-content-between">
+        <div class="my-bookings bg-white box p-4" style="width: 48%;">
+          <h3>My sent rentals</h3>
+          <%current_user.bookings.each do |b|%>
+            <div class="request-card">
+              <p>b.instrument.name</p>
+            </div>
+          <%end%>
+        </div>
+        <div class="others-bookings bg-white box p-4" style="width: 48%;">
+          <h3>Pending bookings</h3>
+          <%@my_instru.each do |i| %>
+            <%i.bookings.each do |b| %>
+              <%if b.answered == false%>
+                <div class="request-card d-flex w-100 my-4">
+                  <div class="instrument-image">
+                    <% if i.photo.attached? %>
+                      <%= cl_image_tag i.photo.key, width: 180, height:150, crop: :fill, class:"request-image" %>
+                    <% else %>
+                      <%= image_tag "https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80", width: 100, height: 70, crop: :fill %>
+                    <% end %>
                   </div>
-                  <%if b.user.photo.attached?%>
-                    <%= cl_image_tag b.user.photo.key, class:"avatar-medium"%>
-                  <%else%>
-                    <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class: "avatar-medium" %>
-                  <%end%>
-                  <p><%=i.name%></p>
-                  <%= simple_form_for [i, b] do |f| %>
-                    <%= f.input :accepted, as: :hidden, input_html: {value: '1'}%>
-                    <%= f.input :answered,  as: :hidden, input_html: {value: '1'}%>
-                    <%= f.submit "Accept", class: 'btn btn-flat', data: { confirm: "Are you sure you want to accept?"} %>
-                  <% end %>
-                  <%= simple_form_for [i, b] do |f| %>
-                    <%= f.input :answered,  as: :hidden, input_html: {value: '1'}%>
-                    <%= f.submit "Refuse", class: 'btn btn-danger', data: { confirm: "Are you sure you want to refuse?"} %>
-                  <% end %>
+                  <div class="request-info flex-grow-1">
+                    <div class="info-renter">
+                      <div class="d-flex">
+                        <%if b.user.photo.attached?%>
+                          <%= cl_image_tag b.user.photo.key, class:"avatar-small"%>
+                        <%else%>
+                          <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class: "avatar-small" %>
+                        <%end%>
+                        <div class="d-flex flex-column">
+                          <h5 class="p-profile"> Asked by <strong> <%= b.user.first_name.capitalize %> </strong> </h5>
+                          <p class="mb-0 small"> Member since <strong> <%= better_time(b.user.created_at) %> </strong> </p>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="mb-0"><%=i.name%></p>
+                    <div class="d-flex w-100 justify-content-between align-items-center">
+                      <%= simple_form_for [i, b] do |f| %>
+                        <%= f.input :accepted, as: :hidden, input_html: {value: '1'}%>
+                        <%= f.input :answered,  as: :hidden, input_html: {value: '1'}%>
+                        <%= f.submit "Accept", class: 'btn btn-flat mt-0', data: { confirm: "Are you sure you want to accept?"} %>
+                      <% end %>
+                      <%= simple_form_for [i, b] do |f| %>
+                        <%= f.input :answered,  as: :hidden, input_html: {value: '1'}%>
+                        <%= f.submit "Refuse", class: 'btn btn-flat', data: { confirm: "Are you sure you want to refuse?"}, style: "background-color: red !important;" %>
+                      <% end %>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              <%end%>
             <%end%>
           <%end%>
-        <%end%>
-        <%# bookings.where{pending==true}.each do
-          <div class="carte">
-            tete du loueur
-            instru qu'il veut louer
-            dates
-            bouton "accept", bouton "refuse"
-          </div>
-        end %>
-        <%# <div class="card-product">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-          <div class="card-product-infos">
-            <h2>Product name</h2>
-            <p>Product description with <strong>relevant info</strong> only.</p>
-          </div>
-        </div> %>
+          <%# bookings.where{pending==true}.each do
+            <div class="carte">
+              tete du loueur
+              instru qu'il veut louer
+              dates
+              bouton "accept", bouton "refuse"
+            </div>
+          end %>
+          <%# <div class="card-product">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-product-infos">
+              <h2>Product name</h2>
+              <p>Product description with <strong>relevant info</strong> only.</p>
+            </div>
+          </div> %>
+        </div>
       </div>
-    </div>
-    <div class="accepted-bookings">
-      <div class="oncoming-bookings">
-        <h3>Oncoming bookings</h3>
-        <%@my_instru.each do |i| %>
-          <%i.bookings.accepted.oncoming.each do |b| %>
-            <p><%=i.name%></p>
+      <div class="accepted-bookings">
+        <div class="oncoming-bookings w-100 bg-white box p-4 mt-4">
+          <h3>Oncoming bookings</h3>
+          <%@my_instru.each do |i| %>
+            <%i.bookings.accepted.oncoming.each do |b| %>
+              <p><%=i.name%></p>
+            <%end%>
           <%end%>
-        <%end%>
-      </div>
-      <div class="passed-bookings">
-        <h3>Passed bookings</h3>
-        <%@my_instru.each do |i| %>
-          <%i.bookings.accepted.passed.each do |b| %>
-            <p><%=i.name%></p>
+        </div>
+        <div class="passed-bookings w-100 bg-white box p-4 mt-4">
+          <h3>Passed bookings</h3>
+          <%@my_instru.each do |i| %>
+            <%i.bookings.accepted.passed.each do |b| %>
+              <p><%=i.name%></p>
+            <%end%>
           <%end%>
-        <%end%>
+        </div>
       </div>
-    </div>
+  </div>
 </div>
