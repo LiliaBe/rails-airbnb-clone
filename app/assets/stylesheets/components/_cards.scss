@@ -40,3 +40,16 @@
   top: -20px;
   width: 40px;
 }
+
+.to-bottom {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  height: 300px;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.card-align {
+  align-items: center;
+}
