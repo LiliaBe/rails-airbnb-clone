@@ -11,6 +11,7 @@ class DashboardController < ApplicationController
 
   def rented
     @user = current_user
+    #@booking = Booking.find(params[:booking_id])
     @rented = []
     @bookings = @user.bookings
     @bookings.each do |b|

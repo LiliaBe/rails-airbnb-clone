@@ -12,7 +12,7 @@
 <div class="container mt-3 " >
   <h1 class="text-center mt-5"> All my instruments</h1>
   <div class="d-flex my-5">
-    <div class="size-box">
+    <div class="size-box-2">
       <% if @rentals.empty? %>
         <div>
           <%= "You haven't rent an instrument yet"%>
@@ -21,7 +21,7 @@
         <% @rentals.each do |rental| %>
           <div class="d-flex my-3 box">
             <%= link_to instrument_path(rental) do %>
-              <div class="card-trip">
+              <div class="card-trip size-picture">
                 <% if rental.photo.attached? %>
                   <%= cl_image_tag rental.photo.key %>
                 <% else %>
@@ -42,7 +42,7 @@
               </div>
             <% end %>
 
-            <div class="reviews ms-3">
+            <div class="reviews p-3">
               <h3 class="mt-3">Reviews</h3>
               <% if rental.bookings.any? { |booking| booking.review } %>
                 <% rental.bookings.each do |booking| %>
