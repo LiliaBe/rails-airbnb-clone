@@ -27,10 +27,6 @@ class BookingsController < ApplicationController
     end
   end
 
-  def duration
-    @booking.end_date - @booking.start_date.to_i
-  end
-
   private
 
   def booking_params
