@@ -13,7 +13,7 @@
   </li>
 </ul>
 
-<div class="container " >
+<div class="container mt-3" >
   <div class="grid-container my-5">
     <% if @rented.empty? %>
       <div>
@@ -21,26 +21,25 @@
       </div>
     <% else %>
 
-      <% @rented.each do |r| %>
-        <%= link_to instrument_path(r) do %>
+      <% @bookings.each do |booking| %>
+        <%= link_to instrument_path(booking.instrument) do %>
           <div class="card-trip">
-            <% if r.photo.attached? %>
-              <%= cl_image_tag r.photo.key %>
+            <% if booking.instrument.photo.attached? %>
+              <%= cl_image_tag booking.instrument.photo.key %>
             <% else %>
               <%= image_tag "https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" %>
             <% end %>
               <div class="card-trip-infos">
                 <div>
-                  <h2><%=r.name %></h2>
-                  <p><%=r.description.truncate(32) %></p>
+                  <h2><%=booking.instrument.name %></h2>
+                  <p><%=booking.instrument.description.truncate(32) %></p>
                 </div>
-                <h2 class="card-trip-pricing"><%=r.price%>€</h2>
-                <%if r.user.photo.attached?%>
-                  <%= cl_image_tag r.photo.key, class:"card-trip-user avatar-bordered" %>
-                <%else%>
-                  <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class:"card-trip-user avatar-bordered" %>
-                <%end%>
-                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+                <h2 class="card-trip-pricing"><%=booking.total_price%>€ for <%= pluralize(booking.duration, 'day') %> </h2>
+                <%if booking.instrument.user.photo.attached?%>
+                  <%= cl_image_tag booking.instrument.user.photo.key, class:"card-trip-user avatar-bordered" %>
+                <%else%>
+                  <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class:"card-trip-user avatar-bordered" %>
+                <%end%>
               </div>
           </div>
         <% end %>

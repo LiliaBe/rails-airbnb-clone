@@ -6,14 +6,14 @@ class DashboardController < ApplicationController
   def rentals
     @user = current_user
     @rentals = @user.instruments
-    @bookings = Booking.where(user: current_user, instrument: @instrument)
-    @reviews = Review.all
+    # @bookings =
   end
 
   def rented
     @user = current_user
     @rented = []
-    @user.bookings.each do |b|
+    @bookings = @user.bookings
+    @bookings.each do |b|
       @rented << b.instrument
     end
   end

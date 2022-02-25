@@ -15,6 +15,14 @@ class Booking < ApplicationRecord
   scope :answered, -> { where("answered = true") }
   scope :unanswered, -> { where("answered = false") }
 
+  def duration
+    (end_date - start_date).to_i
+  end
+
+  def total_price
+    duration * instrument.price
+  end
+
   private
 
   def end_date_after_start_date
@@ -24,5 +32,6 @@ class Booking < ApplicationRecord
       errors.add(:end_date, "must be after the start date")
     end
   end
+
 
 end
