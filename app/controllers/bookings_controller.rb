@@ -26,17 +26,13 @@ class BookingsController < ApplicationController
       render "instruments/show"
     end
   end
-
+  
   def update
     @instrument = Instrument.find(params[:instrument_id])
     @booking = Booking.find(params[:id])
     @booking.update(booking_params)
     authorize @booking
     redirect_to requests_path
-  end
-
-  def duration
-    @booking.end_date - @booking.start_date.to_i
   end
 
   private

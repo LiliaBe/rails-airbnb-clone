@@ -2,6 +2,7 @@ class Instrument < ApplicationRecord
   CATEGORY = ['Strings', 'Keyboard', 'Woodwind', 'Brass', 'Percussions', 'Amplification', 'Microphones', 'Cables & Accessories'].freeze
   belongs_to :user # 1/ creates a validation, instrument.user needs to exist! 2/ Gives access to instrument.users
   has_many :bookings, dependent: :destroy
+  has_many :reviews, through: :bookings
   has_one_attached :photo
 
   geocoded_by :location
