@@ -1,4 +1,4 @@
-<ul class="list-inline tabs-underlined">
+<ul class="list-inline tabs-underlined mt-2">
   <li>
     <%= link_to "My profile", profile_path, class: "tab-underlined"%>
   </li>
@@ -9,62 +9,59 @@
     <%= link_to "My rentals", rented_path, class: "tab-underlined"%>
   </li>
 </ul>
-
-<div class="container " >
-  <div class="grid-container my-5">
-    <% if @rentals.empty? %>
-      <div>
-        <%= "You haven't rent an instrument yet"%>
-      </div>
-    <% else %>
-
-      <% @rentals.each do |rental| %>
-        <%= link_to instrument_path(rental) do %>
-          <div class="card-trip">
-            <% if rental.photo.attached? %>
-              <%= cl_image_tag rental.photo.key %>
-            <% else %>
-              <%= image_tag "https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" %>
-            <% end %>
-              <div class="card-trip-infos">
-                <div>
-                  <h2><%=rental.name %></h2>
-                  <p><%=rental.description.truncate(32) %></p>
-                </div>
-                <h2 class="card-trip-pricing"><%=rental.price%>€</h2>
-                <%if current_user.photo.attached?%>
-                  <%= cl_image_tag current_user.photo.key, class:"card-trip-user avatar-bordered" %>
-                <%else%>
-                  <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class:"card-trip-user avatar-bordered" %>
-                <%end%>
+<div class="container mt-3 " >
+  <h1 class="text-center mt-5"> All my instruments</h1>
+  <div class="d-flex my-5">
+    <div class="size-box">
+      <% if @rentals.empty? %>
+        <div>
+          <%= "You haven't rent an instrument yet"%>
+        </div>
+      <% else %>
+        <% @rentals.each do |rental| %>
+          <div class="d-flex my-3 box">
+            <%= link_to instrument_path(rental) do %>
+              <div class="card-trip">
+                <% if rental.photo.attached? %>
+                  <%= cl_image_tag rental.photo.key %>
+                <% else %>
+                  <%= image_tag "https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" %>
+                <% end %>
+                  <div class="card-trip-infos">
+                    <div>
+                      <h2><%=rental.name %></h2>
+                      <p><%=rental.description.truncate(32) %></p>
+                    </div>
+                    <h2 class="card-trip-pricing"><%=rental.price%>€</h2>
+                    <%if current_user.photo.attached?%>
+                      <%= cl_image_tag current_user.photo.key, class:"card-trip-user avatar-bordered" %>
+                    <%else%>
+                      <%= image_tag "https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80", class:"card-trip-user avatar-bordered" %>
+                    <%end%>
+                  </div>
               </div>
+            <% end %>
+
+            <div class="reviews ms-3">
+              <h3 class="mt-3">Reviews</h3>
+              <% if rental.bookings.any? { |booking| booking.review } %>
+                <% rental.bookings.each do |booking| %>
+                  <%= booking.user.first_name %>
+                  <div class="mt-1">
+                    <% booking.review.rating.times do %>
+                      <i class="fas fa-star star-yellow"></i>
+                    <% end %>
+                    <small><em class="text-muted"><%= distance_of_time_in_words_to_now(booking.review.created_at) %> ago</em></small>
+                    <p class="mb-0"><%= booking.review.comment %></p>
+                  </div>
+                  <hr>
+                <% end %>
+              <% else %>
+                <p>No reviews</p>
+              <% end %>
+            </div>
           </div>
         <% end %>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-<div class="container">
-    <h3>Reviews</h3>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-sm-6">
-      <% if @reviews.empty? %>
-        <small><em class="text-muted">Be the first one to review this list</em></small>
-      <% end %>
-      <% @reviews.each do |review| %>
-        <div> <%=@user.first_name%>  <%=@user.last_name%>
-        </div>
-        <div>
-          <% review.rating.times do %>
-            <i class="fas fa-star star-yellow"></i>
-          <% end %>
-          <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
-          <p class="mb-0"><%= review.comment %></p>
-        </div>
-        <hr>
       <% end %>
     </div>
   </div>
