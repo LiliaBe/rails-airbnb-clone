@@ -4,52 +4,52 @@
     </h1>
 </div>
 
-<div class="container">
+<div class="container" data-controller="music">
   <div class="grid-container">
     <%= link_to instruments_path(category: true, query: "Strings") do %>
-      <div class="icon-box">
+      <div class="icon-box" id="<%= asset_path("audios/guitar.wav") %>" data-action="mouseover->music#play">
         <%= image_tag "music_categories/guitar.png", style: "width: 100px;" %>
         <p>Strings</p>
       </div>
     <% end %>
     <%= link_to instruments_path(category: true, query: "Keyboard") do %>
-      <div class="icon-box">
+      <div class="icon-box" id="<%= asset_path("audios/piano.mp3") %>" data-action="mouseover->music#play">
         <%= image_tag "music_categories/piano.png", style: "width: 100px;" %>
         <p>Keys</p>
       </div>
     <% end %>
     <%= link_to instruments_path(category: true, query: "Woodwind") do %>
-      <div class="icon-box">
+      <div class="icon-box" data-action="mouseover->music#play">
         <%= image_tag "music_categories/saxophone.png", style: "width: 100px;" %>
         <p>Woodwind</p>
       </div>
     <% end %>
     <%= link_to instruments_path(category: true, query: "Brass") do %>
-      <div class="icon-box">
+      <div class="icon-box" id="<%= asset_path("audios/trumpet.mp3") %>" data-action="mouseover->music#play">
         <%= image_tag "music_categories/trumpet.png", style: "width: 100px;" %>
         <p>Brass</p>
       </div>
     <% end %>
     <%= link_to instruments_path(category: true, query: "Percussions") do %>
-      <div class="icon-box">
+      <div class="icon-box" id="<%= asset_path("audios/drums.mp3") %>" data-action="mouseover->music#play">
         <%= image_tag "music_categories/drum-kit.png", style: "width: 100px;" %>
         <p>Percussion</p>
       </div>
     <% end %>
     <%= link_to instruments_path(category: true, query: "Amplification") do %>
-      <div class="icon-box">
+      <div class="icon-box" id="<%= asset_path("audios/amplifier.mp3") %>" data-action="mouseover->music#play">
         <%= image_tag "music_categories/amplifier.png", style: "width: 100px;" %>
         <p>Amplification</p>
     </div>
     <% end %>
       <%= link_to instruments_path(category: true, query: "Microphones") do %>
-      <div class="icon-box">
+      <div class="icon-box" id="<%= asset_path("audios/microphone.mp3") %>" data-action="mouseover->music#play">
         <%= image_tag "music_categories/microphone.png", style: "width: 100px;" %>
         <p>Microphones</p>
       </div>
     <% end %>
       <%= link_to instruments_path(category: true, query: "Cables & Accessories") do %>
-      <div class="icon-box">
+      <div class="icon-box" id="<%= asset_path("audios/cables.m4a") %>" data-action="mouseover->music#play">
         <%= image_tag "music_categories/jack.png", style: "width: 100px;" %>
         <p>Cables & Accessories</p>
       </div>
