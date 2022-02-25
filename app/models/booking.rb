@@ -9,6 +9,8 @@ class Booking < ApplicationRecord
 
   scope :passed_bookings, -> { where("end_date < now") }
   scope :oncoming_bookings, -> { where("start_date > now") }
+  scope :answered_bookings, -> { where("answered == true") }
+  scope :unanswered_bookings, -> { where("answered == false") }
 
   private
 
