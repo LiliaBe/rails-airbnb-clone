@@ -7,6 +7,9 @@ class Booking < ApplicationRecord
   validates :start_date, :end_date, presence: true
   validate :end_date_after_start_date
 
+  scope :passed_bookings, -> { where("end_date < now") }
+  scope :oncoming_bookings, -> { where("start_date > now") }
+
   private
 
   def end_date_after_start_date
