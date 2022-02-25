@@ -13,11 +13,14 @@
   </li>
 </ul>
 
-<div class="container flex-container my-5">
-    <div class="pending-bookings">
+<div class="container my-5">
+    <div class="pending-bookings flex-container">
       <div class="my-bookings">
+      <h3>My sent rentals</h3>
         <%current_user.bookings.each do |b|%>
           <div class="request-card">
+            <p><%=b.instrument.name%></p>
+          </div>
         <%end%>
       </div>
       <div class="others-bookings">
