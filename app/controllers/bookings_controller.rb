@@ -27,9 +27,15 @@ class BookingsController < ApplicationController
     end
   end
 
+  def update
+    @instrument = Instrument.find(params[:instrument_id])
+    @booking = Booking.update(booking_params)
+    authorize @booking
+  end
+
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date,:end_date)
+    params.require(:booking).permit(:start_date, :end_date, :accepted, :answered)
   end
 end

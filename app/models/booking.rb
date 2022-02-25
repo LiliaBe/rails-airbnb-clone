@@ -1,3 +1,5 @@
+require 'date'
+
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :instrument
@@ -7,10 +9,11 @@ class Booking < ApplicationRecord
   validates :start_date, :end_date, presence: true
   validate :end_date_after_start_date
 
-  scope :passed_bookings, -> { where("end_date < now") }
-  scope :oncoming_bookings, -> { where("start_date > now") }
-  scope :answered_bookings, -> { where("answered == true") }
-  scope :unanswered_bookings, -> { where("answered == false") }
+  scope :passed, -> { where("end_date < ?", Date.today) }
+  scope :oncoming, -> { where("start_date > ?", Date.today) }
+  scope :accepted, -> { where("accepted = true") }
+  scope :answered, -> { where("answered = true") }
+  scope :unanswered, -> { where("answered = false") }
 
   private
 
