@@ -29,8 +29,10 @@ class BookingsController < ApplicationController
 
   def update
     @instrument = Instrument.find(params[:instrument_id])
-    @booking = Booking.update(booking_params)
+    @booking = Booking.find(params[:id])
+    @booking.update(booking_params)
     authorize @booking
+    redirect_to requests_path
   end
 
   def duration
